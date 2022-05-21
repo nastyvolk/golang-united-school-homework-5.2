@@ -23,6 +23,7 @@ func (c Cache) Get(key string) (string, bool) {
 	if value.deadline.IsZero() || value.deadline.After(time.Now()) {
 		return value.value, true
 	}
+	delete(c.kvPairs, key)
 	return "", false
 }
 
